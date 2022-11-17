@@ -1,0 +1,26 @@
+﻿@model HomeViewModel
+
+<form method="post">
+    <div class="form-group mb-3">
+        <input type="text" class="form-control" name="location" placeholder="Country/City/State">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+@if (Model.Location != null)
+{
+    if (Model.Error)
+    {
+        <div class="text-center">
+        <h1 class="display-4">Unable to Find that Location</h1>
+        </div>
+    }
+    else{
+        decimal currentTemperature = Math.Round((decimal)Model.Weather.Temperatures.Temperature, 2);
+
+        <div class="text-center">
+            <h1 class="display-4">The current temperature in @Model.Location is:</h1>
+            <h2>@(currentTemperature - (decimal)273.15) Celsius</h2>
+        </div>
+    }
+}
